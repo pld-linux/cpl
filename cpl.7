@@ -1,0 +1,338 @@
+.\" Copyright (c) 1997 Mariusz Krawczyk
+.\"
+.TH CPL 7 "28 Aug 1997" "ConvPL" "Linux Programmer's Manual"
+.SH NAME
+cpl \- konwerter standardow polskich znakow v2.05
+.SH SKLADNIA
+.BI "cpl <nn>" "[konwersja] [-] "[plik1.txt] " [plik2.txt ...]"
+.SH OPIS
+Parametr
+.B <nn>
+to dwie cyfry/litery, okreslajace standard 
+.IR zrodlowy 
+(pierwsza) i 
+.IR docelowy 
+(druga) przeprowadzanej konwersji.
+Parametr
+.B <konwersja>
+okresla rodzaj opcjonalnie stosowanej konwersji
+zakonczenia linii pomiedzy DOSem a Unixem i Amiga.
+.SH Przyklady:
+.B cpl 14 tex1.txt
+\- plik tex1.txt (Mazovia -> ISO-Latin-2)
+.br
+.B cpl 14 *.txt
+\- wszystkie pliki z rozszerzeniem .txt
+.br
+.B  cpl 14 tex1.txt *.doc
+\- plik tekst1.txt i wszystkie .doc
+.SH "OBSLUGIWANE STANDARDY"
+Dostepne standardy (podajemy dwie cyfry/litery):
+.br
+.B 0:
+bez polskich liter (ASCII,CP473)
+.br
+.B 1:
+Mazovia
+.br
+.B 2:
+FidoMazovia
+.br
+.B 3:
+IBM Latin 2 (CP852)
+.br
+.B 4:
+ISO Latin 2 (ISO-8859-2)
+.br
+.B 5:
+DHN
+.br
+.B 6:
+CSK
+.br
+.B 7:
+Cyfromat (IINTE-ISIS)
+.br
+.B 8:
+IEA
+.br
+.B 9:
+LOGIC
+.br
+.B a:
+Microvex
+.br
+.B b:
+Amiga PL
+.br
+.B c:
+CP/J (Elwro 800 Junior)
+.br
+.B d:
+Amiga FAT
+.br
+.B e:
+Windows 3.0 (CP1250)
+.br
+.B f:
+Amiga XJP
+.br
+.B g:
+Ventura
+.br
+.B h:
+Macintosh
+.br
+.B i:
+TeX PL
+.br
+.B j:
+Corel 2.0
+.br
+.B k:
+Atari Calamus
+.br
+.B l:
+FX
+.br
+.B m:
+KWK
+.br
+.B n:
+MS Works
+.br
+.B o:
+ATM
+.SH Skroty:
+Zamiast najczesciej stosowanych konwersji mozna stosowac skroty. Podajemy
+wowczas tylko jedna litere:
+.br
+.B A:
+Mazovia na IBM Latin 2
+.br
+.B B:
+IBM Latin 2 na Mazovie
+.br
+.B C:
+Mazovia na ASCII
+.br
+.B D:
+IBM Latin 2 na ASCII
+.br
+.B F:
+FidoMazovia na Mazovie
+.br
+Dowolnosc konwersji jest calkowita, z jednym wyjatkiem. Standard ASCII nie
+moze byc standardem zrodlowym konwersji (przyczyna jest oczywista - zeby nie
+pokaszanic calego tekstu - ale jest od tej reguly wyjatek! patrz
+.B UWAGI .
+.SH Konwersja zakonczen linii:
+.IR ConvPL 
+umozliwia rownolegla konwersje pomiedzy tekstem spod DOSa, a tekstem
+spod Unixa czy Amigi. Rodzaj docelowej konwersji okreslaja parametry:
+.br
+.B \-: 
+konwersja do tekstu Unixa (Amigi)  -> NL
+.br
+.B \=: 
+konwersja do tekstu DOSa           -> CR+LF
+.br
+Zmienilem wystepujace w poprzednich wersjach oznaczenia tych parametrow
+(/,\\), poniewaz bekslesz jest znakiem specjalnym pod U*xem. Nowe ustawienia
+mozna rownie latwo zapamietac: pod U*xem koniec linii to jeden znak (NL),
+wiec jedna kreska: "-"; pod DOSem sa to dwa znaki (CR+LF), stad dwie
+kreski: "=". ;)
+.SH "PRACA W TRYBIE FILTRU"
+.IR ConvPL
+moze pracowac rowniez w trybie filtru. Podanie znaku "-" zamiast
+nazw plikow spowoduje pobranie tekstu z standardowego urzadzenia wejscia 
+- stdin (klawiatura) i zapisanie go do standardowego wyjscia - stdout 
+(monitor, terminal, drukarka). Przyklady:
+.br
+.B cpl A \-
+kazda linia wpisywana z klawiatury bedzie
+pojawiala sie ponizej po wcisnieciu
+.IR <Enter>
+, znaki z kodu Mazovia beda
+zamieniane na IBM Latin 2
+.br
+.B cpl 13 <joke.txt >prn
+\- konwersja pliku joke.txt i wyslanie
+wynikow bezposrednio na drukarke (DOS);
+czesto sam z tego korzystam, bo na moim PC pod DOSem mam Mazovie, a na drukarce CP852 .
+Jesli nie chcemy zasmiecac sobie dysku, wydajemy nastepujace polecenia:
+.br
+.B  cpl A - <joke.txt >nul
+(MSDOS) lub 
+.B >/dev/null
+(Unix) ;)))
+Tryb filtru umozliwia rowniez przetwarzanie tekstu w potoku (pipe).
+.br 
+.IR Przyklad:
+.br
+.B type joke1.txt | cpl 14- - >joke3.txt 
+(MSDOS). Plik 
+.IR joke1.txt
+zostanie przepuszczony przez konwersje Mazovia -> ISO-Latin-2,
+a konce linii zostana zamienione na modle unixowa. Wynik zostanie 
+zapisany do pliku
+.IR joke3.txt
+Zwroc uwage na obecnosc dwoch minusow w linii polecen - kazdy pelni inna
+funkcje. Pierwszy, polaczony z opisem konwersji ("14-"), wlacza konwersje
+zakonczen linii. Drugi, samodzielny, wlacza tryb filtru.
+.br
+.B cat joke.txt1 joke2.txt | cpl 14- - >joke3.txt (Unix)
+.br
+Przyjmujac, ze pliki 
+.IR joke.txt 
+i
+.IR joke2.txt 
+sa napisane oryginalnie w Mazovii i pod MSDOSem, takie polecenie spowoduje 
+polaczenie obu plikow, konwersje calosci z Mazovii na ISO Latin 2, i przy okazji z CR+LF -> NL, 
+a nastepnie zapis do pliku 
+.IR joke3.txt.
+Uruchamiajac 
+.IR ConvPL 
+w tym trybie nalezy uwazac na pomylki takie jak ta:
+.br
+.B cpl A joke.txt >prn
+.br
+Tekst zostanie przekonwertowany zgodnie z regula 13 (skrot "A"), ale na
+drukarke nie zostanie wyslany, gdyz
+.IR ConvPL
+bedzie go zapisywal do pliku
+.IR joke.txt
+a nie na standardowe wyjscie. W rzeczywistosci powyzsze (bledne)
+polecenie oznacza:
+.br
+.B konwertuj plik joke.txt, zapisujac wynik pod ta sama nazwa,
+zas na drukarke wysylaj wyjscie przez program
+normalnie wyswietlane na ekranie, czyli komunikaty.
+.br
+Polecenie ponizsze spowoduje najprawdopodobniej uszkodzenie oryginalnego pliku,
+wiec nalezy sie go wystrzegac:
+.br
+.B  cpl A - <joke.txt >joke.txt (obie nazwy takie same!)
+.br
+Po prostu, system straci glowe probujac rownoczesnie czytac i pisac
+do pliku, a ucierpi na tym tenze plik.
+.br
+.IR Pamietajmy:
+aby uruchomic ConvPL w trybie filtru, potok danych musi
+przychodzic ze stdin i wychodzic na stdout (a nie czesciowo z pliku, czesciowo
+z potoku). Jesli nie wiesz o co chodzi, to poczytaj o potokach, filtrach oraz
+roli symboli <, |, > itp. w poleceniach DOSa i Unixa.
+.SH UWAGI:
+Od wersji 2.01 istnieje mozliwosc wykonywania konwersji zakonczen linii
+bez zmiany standardu polskich znakow. Wystarczy jako standard zrodlowy
+podac ASCII - "0" (do tej pory bylo to niedopuszczalne), zas jako drugi
+parametr opcje konwersji zakonczen linii "-" lub "=".  Drugi parametr,
+podany zgodnie z konwencja i okreslajacy standard docelowy jest w tym
+wypadku ignorowany. A zatem, kazdy z ponizszych przykladow ma takie samo
+dzialanie:
+.br
+.B  cpl 0- joke.txt
+.br
+.B cpl 00- joke.txt
+.br
+.B cpl 02- joke.txt
+.br
+czyli konwersje zakonczen linii do pojedynczych NL, bez naruszania
+polskich liter.
+.TP 
+.B Komentarz do standardow
+Za definicje Amiga PL dziekuje Marcinowi Kadziolce <2:484/15.16@fidonet>.
+.br
+Definicje dodane w wersji 1.75 udostepnil mi Edwin Wierszelis
+<2:482/16@fidonet>, autor konwertera KPN.
+.br
+.I Standard ASCII 
+to oczywiscie zwykle literki ASCII, zastepujace odpowiednie
+polskie znaki. Taki tekst zwie sie zwykle "polskawym", a standard okresla
+jako CP473 (oryginalna, amerykanska strona kodowa).
+.br
+.IR FidoMazovia 
+jest polformalnym (jak cala reszta ;) standardem, przyjetym 
+w srodowisku sieci Fido. Jedyna roznica w stosunku do klasycznej Mazovii 
+to zamiana znaku c' (141) na c-cedilla (135), wynikajaca ze wzgledow 
+technicznych.
+.br
+.I Standard IBM Latin 2 (CP852) 
+jest lansowany przez Micro$oft wraz z systemem
+MSDOS. Wraz z kolejnym "systemem" - Windows wyszedl na swiat standard
+strony kodowej 1250 (CP1250). Znany tez jako Windows-EE, czyli strona
+kodowa dla Europy Wschodniej.
+.br
+.IR ISO-8859-2 
+znany tez jako 
+.IR ISO Latin 2 
+jest standardem rozpowszechnionym
+zwlaszcza w systemach unixowych i pracujacych pod X-windowsami. Jest rowniez
+standardem zalecanym przez Polskie Normy oraz uznanym za obowiazujacy
+w polskojezycznym WWW oraz, ostatnio, w polskim UseNecie.
+.br
+Standard 
+.IR FAT 
+jest jednym z amigowskich dialektow, znalezionym w diskmagu
+FAT przez Edwina Wierszelisa.
+.br Standard
+.IR DHN
+jest rozpowszechniony wraz z polskim ChiWriterem.
+.br
+Niektore standardy pochodza z Polskiej Strony Ogonkowej 
+.IR http://www.uci.agh.edu.pl/ogonki/, 
+na ktorej mozna znalezc wiele cennych informacji na temat polskich liter.
+.TP 
+.B Konwersja tekstu Unix<->DOS:
+Pod Unixem kazda linijka tekstu konczy sie znakiem NL (new line) o kodzie 0xa,
+rownoznaczny DOSowemu LF (line feed). Pod DOSem zakonczenie linii stanowi
+para znakow CR+LF, czyli 0xd,0xa. Parametr "-" wymusza zakonczenie linii
+znakiem NL, zas "=" - para CR+LF. Brak okreslonego kierunku konwersji
+nie spowoduje zadnej zmiany koncow linii w pliku wynikowym. Parametry konwersji
+zakonczen linii dodaje sie "na trzeciego" do parametrow konwersji standardow.
+.TP 
+.B Kod zrodlowy
+Program byl z powodzeniem kompilowany Borlandem 3.1, gcc 2.7.2 pod Linuxem
+(a.out, ELF), oraz DJGPP pod DOSem (gcc 2.6.3). Prosze o kontakt w razie 
+wystapienia niekompatybilnosci kodu zrodlowego w innych systemach.
+Wersja 2.04 i wyzsze sa na razie kompilowalne tylko pod Linuxem (i byc moze
+innymi Unixami).
+.TP 
+.B Licznik linii:
+Typowy "wodotrysk". Zwalnia prace o ok. 30%. Standardowo 
+wylaczony, w celu wlaczenia trzeba przekompilowac zrodla bez opcji NO_LINE_COUNT. Licznik jest
+zawsze wylaczony podczas pracy w trybie stdin/stdout (czyli zazwyczaj jako
+filtr itp.).
+.TP 
+.B Znane bledy:
+Tekst nie moze zawierac znaku ASCII 0 (^@), 
+ktory jest uzywany jako znacznik konca pliku.
+.SH INNE OPCJE
+.TP
+.B \-?, \-h, --help:
+wyswietlaja liste wszystkich dostepnych parametrow, skladnie linii komend itp.
+.TP
+.B \-V,  --version:
+wyswietla (na stdout) numer wersji CPL
+.TP
+.B \-L, --licencja:
+wyswietlaja licencje uzytkowania programu.
+.TP
+.B \-S, --standard:
+wyswietlaja tabelke wszystkich obslugiwanych standardow polskich znakow.
+.SH W PLANACH
+.sp
+.B 'spolszczanie' cyrylicy
+.sp
+.B kody wieloznakowe
+.SH "PATRZ ROWNIEZ"
+.BR qpl (7) 
+.SH AUTORZY:
+.B Pawel Krawczyk 
+\- wlasciciel praw autorskich programu
+.B cpl
+.IR kravietz@pipeta.chemia.pk.edu.pl
+.br
+.B Mariusz Krawczyk
+\- tworca pliku manual-a czyli tego .
+.IR scorpio@astra.mech.pk.edu.pl
