@@ -3,7 +3,7 @@ Summary(pl):	Konwerter polskich kodowañ znaków z rozpoznawaniem kodowania
 Name:		cpl
 Version:	2.0.7
 Release:	2
-License:	freeware for noncommercial use, not distributable without source
+License:	Freeware for noncommercial use, not distributable without source
 Group:		Applications/Text
 Source0:	%{name}-%{version}-ELF.tar.gz
 Source1:	cpl.7.pl
