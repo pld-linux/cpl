@@ -1,4 +1,4 @@
-Summary:	Converter of polish character encodings with encodind recognizer
+Summary:	Converter of Polish character encodings with encodind recognizer
 Summary(pl):	Konwerter polskich kodowañ znaków z rozpoznawaniem kodowania
 Name:		cpl
 Version:	2.0.6
@@ -11,12 +11,12 @@ URL:		http://ceti.com.pl/~kravietz/cpl.html
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-cpl - Universal converter of polish character encodings. Things that
+cpl - Universal converter of Polish character encodings. Things that
 distinguish it from other programs of that type are amount of
 supported standards, conversion in any direction and maximally
 simplified - yet powerfull - command line.
 
-qpl - Utility for recognizing polish character encodings. It's used
+qpl - Utility for recognizing Polish character encodings. It's used
 for recognizing encoding in text files if encoding is unknown or
 unsure.
 
