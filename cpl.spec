@@ -6,6 +6,7 @@ Release:	3
 License:	Freeware for non-commercial use, not distributable without source
 Group:		Applications/Text
 Source0:	%{name}-%{version}-ELF.tar.gz
+# Source0-md5:	92d186fe2c9896423da527c6283ae0ff
 Source1:	cpl.7.pl
 Source2:	cpn.7.pl
 Source3:	qpl.7.pl
