@@ -2,7 +2,7 @@ Summary:	Converter of Polish character encodings with encoding recognizer
 Summary(pl):	Konwerter polskich kodowañ znaków z rozpoznawaniem kodowania
 Name:		cpl
 Version:	2.0.7
-Release:	3
+Release:	4
 License:	Freeware for non-commercial use, not distributable without source
 Group:		Applications/Text
 Source0:	%{name}-%{version}-ELF.tar.gz
