@@ -16,7 +16,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 cpl - Universal converter of Polish character encodings. Things that
 distinguish it from other programs of that type are amount of
 supported standards, conversion in any direction and maximally
-simplified - yet powerfull - command line.
+simplified - yet powerful - command line.
 
 qpl - Utility for recognizing Polish character encodings. It's used
 for recognizing encoding in text files if encoding is unknown or
