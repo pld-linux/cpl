@@ -2,8 +2,8 @@ Summary:	Converter of Polish character encodings with encodind recognizer
 Summary(pl):	Konwerter polskich kodowañ znaków z rozpoznawaniem kodowania
 Name:		cpl
 Version:	2.0.7
-Release:	2
-License:	Freeware for noncommercial use, not distributable without source
+Release:	3
+License:	Freeware for non-commercial use, not distributable without source
 Group:		Applications/Text
 Source0:	%{name}-%{version}-ELF.tar.gz
 Source1:	cpl.7.pl
@@ -51,13 +51,11 @@ ln -s cpl $RPM_BUILD_ROOT%{_bindir}/ConvPL
 install %{SOURCE1} %{SOURCE2} %{SOURCE3} $RPM_BUILD_ROOT%{_mandir}/pl/man7
 echo ".so cpl" > $RPM_BUILD_ROOT%{_mandir}/pl/man7/ConvPL.7
 
-gzip -9nf doc/*.txt
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/*.gz
+%doc doc/*.txt
 %attr(755,root,root) %{_bindir}/*
 %lang(pl) %{_mandir}/pl/man7/*
