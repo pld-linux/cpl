@@ -2,13 +2,13 @@ Summary:	Converter of Polish character encodings with encodind recognizer
 Summary(pl):	Konwerter polskich kodowañ znaków z rozpoznawaniem kodowania
 Name:		cpl
 Version:	2.0.7
-Release:	1
-License:	freeware for noncommercial use
+Release:	2
+License:	freeware for noncommercial use, not distributable without source
 Group:		Applications/Text
 Source0:	%{name}-%{version}-ELF.tar.gz
-Source1:	http://ceti.com.pl/~kravietz/progs/cpl.7
-#Patch0:		%{name}-no_-N.diff
-#Patch1:		%{name}-no_compat_h.diff
+Source1:	cpl.7.pl
+Source2:	cpn.7.pl
+Source3:	qpl.7.pl
 URL:		http://ceti.com.pl/~kravietz/cpl.html
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -46,7 +46,10 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/pl/man7}
 
 install {cpl,qpl,cpn} $RPM_BUILD_ROOT%{_bindir}
-install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man7
+ln -s cpl $RPM_BUILD_ROOT%{_bindir}/ConvPL
+
+install %{SOURCE1} %{SOURCE2} %{SOURCE3} $RPM_BUILD_ROOT%{_mandir}/pl/man7
+echo ".so cpl" > $RPM_BUILD_ROOT%{_mandir}/pl/man7/ConvPL.7
 
 gzip -9nf doc/*.txt
 
