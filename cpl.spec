@@ -1,4 +1,4 @@
-Summary:	Converter of Polish character encodings with encodind recognizer
+Summary:	Converter of Polish character encodings with encoding recognizer
 Summary(pl):	Konwerter polskich kodowañ znaków z rozpoznawaniem kodowania
 Name:		cpl
 Version:	2.0.7
