@@ -46,7 +46,7 @@ tekstowych, je¶li standard ten jest nieznany lub niepewny.
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/pl/man7}
 
-install {cpl,qpl,cpn} $RPM_BUILD_ROOT%{_bindir}
+install cpl qpl cpn $RPM_BUILD_ROOT%{_bindir}
 ln -s cpl $RPM_BUILD_ROOT%{_bindir}/ConvPL
 
 install %{SOURCE1} %{SOURCE2} %{SOURCE3} $RPM_BUILD_ROOT%{_mandir}/pl/man7
