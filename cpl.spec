@@ -1,14 +1,14 @@
 Summary:	Converter of Polish character encodings with encodind recognizer
 Summary(pl):	Konwerter polskich kodowañ znaków z rozpoznawaniem kodowania
 Name:		cpl
-Version:	2.0.6
-Release:	2
+Version:	2.0.7
+Release:	1
 License:	freeware for noncommercial use
 Group:		Applications/Text
-Source0:	http://ceti.com.pl/~kravietz/progs/%{name}-%{version}-ELF.tar.gz
+Source0:	%{name}-%{version}-ELF.tar.gz
 Source1:	http://ceti.com.pl/~kravietz/progs/cpl.7
-Patch0:		%{name}-no_-N.diff
-Patch1:		%{name}-no_compat_h.diff
+#Patch0:		%{name}-no_-N.diff
+#Patch1:		%{name}-no_compat_h.diff
 URL:		http://ceti.com.pl/~kravietz/cpl.html
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -34,8 +34,6 @@ tekstowych, je¶li standard ten jest nieznany lub niepewny.
 
 %prep
 %setup -q
-%patch0 -p0
-%patch1 -p0
 
 %build
 %{__make} \
