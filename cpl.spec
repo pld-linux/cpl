@@ -1,5 +1,5 @@
 Summary:	Converter of Polish character encodings with encoding recognizer
-Summary(pl):	Konwerter polskich kodowañ znaków z rozpoznawaniem kodowania
+Summary(pl.UTF-8):   Konwerter polskich kodowaÅ„ znakÃ³w z rozpoznawaniem kodowania
 Name:		cpl
 Version:	2.0.7
 Release:	4
@@ -23,15 +23,15 @@ qpl - Utility for recognizing Polish character encodings. It's used
 for recognizing encoding in text files if encoding is unknown or
 unsure.
 
-%description -l pl
-cpl - Uniwersalny konwerter standardów polskich znaków. To co go
-wyró¿nia od innych tego typu programów, to liczba obs³ugiwanych
-standardów, dowolno¶æ kierunków konwersji i maksymalnie uproszczona -
-choæ daj±ca wiele mo¿liwo¶ci - linia poleceñ.
+%description -l pl.UTF-8
+cpl - Uniwersalny konwerter standardÃ³w polskich znakÃ³w. To co go
+wyrÃ³Å¼nia od innych tego typu programÃ³w, to liczba obsÅ‚ugiwanych
+standardÃ³w, dowolnoÅ›Ä‡ kierunkÃ³w konwersji i maksymalnie uproszczona -
+choÄ‡ dajÄ…ca wiele moÅ¼liwoÅ›ci - linia poleceÅ„.
 
-qpl - Narzêdzie do rozpoznawania standardów polskich znaków. S³u¿y do
-rozpoznawania standardu kodowania polskich znaków w plikach
-tekstowych, je¶li standard ten jest nieznany lub niepewny.
+qpl - NarzÄ™dzie do rozpoznawania standardÃ³w polskich znakÃ³w. SÅ‚uÅ¼y do
+rozpoznawania standardu kodowania polskich znakÃ³w w plikach
+tekstowych, jeÅ›li standard ten jest nieznany lub niepewny.
 
 %prep
 %setup -q
