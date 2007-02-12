@@ -1,5 +1,5 @@
 Summary:	Converter of Polish character encodings with encoding recognizer
-Summary(pl.UTF-8):   Konwerter polskich kodowań znaków z rozpoznawaniem kodowania
+Summary(pl.UTF-8):	Konwerter polskich kodowań znaków z rozpoznawaniem kodowania
 Name:		cpl
 Version:	2.0.7
 Release:	4
