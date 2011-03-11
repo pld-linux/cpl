@@ -10,7 +10,7 @@ Source0:	%{name}-%{version}-ELF.tar.gz
 Source1:	cpl.7.pl
 Source2:	cpn.7.pl
 Source3:	qpl.7.pl
-URL:		http://ceti.com.pl/~kravietz/cpl.html
+URL:		http://ipsec.pl/cpl
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
